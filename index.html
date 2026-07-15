@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Effe Wiring and Service — Cablaggi e quadri elettrici industriali</title>
+<meta name="description" content="Cablaggio quadri elettrici industriali, lettura schemi, assistenza e collaudo. A Effe Wiring and Service — San Marino.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1b2a;
+    --bg-panel:#132840;
+    --bg-panel-2:#0f2136;
+    --line:#24405c;
+    --ink:#eef3f7;
+    --ink-dim:#93a8bd;
+    --copper:#c9793f;
+    --copper-soft:#e0a06c;
+    --blue-line:#5b9bd5;
+    --radius:4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-attachment:fixed;
+    background-position:center;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background:radial-gradient(ellipse at 50% 0%, rgba(13,27,42,0.2), var(--bg) 70%);
+    pointer-events:none; z-index:0;
+  }
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  /* ── Header ── */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,27,42,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .logo{display:flex; flex-direction:column; line-height:1.1;}
+  .logo .mark{display:flex; align-items:center; gap:8px;}
+  .logo .tri{width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid var(--copper);}
+  .logo .word{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; letter-spacing:0.02em;}
+  .logo .sub{font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.18em; color:var(--ink-dim); margin-top:3px; text-transform:uppercase;}
+  nav{display:flex; gap:32px;}
+  nav a{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--ink-dim); text-decoration:none;
+    padding-bottom:4px; border-bottom:1px solid transparent; transition:color .2s, border-color .2s;
+  }
+  nav a:hover{color:var(--copper-soft); border-color:var(--copper);}
+  .nav-toggle{display:none;}
+
+  /* ── Hero ── */
+  .hero{padding:96px 0 88px; position:relative;}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em;
+    color:var(--copper-soft); text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:22px; height:1px; background:var(--copper);}
+  .hero h1{font-size:clamp(34px,4.4vw,52px); line-height:1.08; margin-bottom:22px;}
+  .hero h1 em{color:var(--copper-soft); font-style:normal;}
+  .hero p.lead{color:var(--ink-dim); font-size:17px; max-width:46ch; margin-bottom:34px;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.04em;
+    padding:13px 26px; border-radius:var(--radius); text-decoration:none; display:inline-block;
+    transition:transform .15s, background .2s, border-color .2s;
+  }
+  .btn-solid{background:var(--copper); color:#1a1006; font-weight:500;}
+  .btn-solid:hover{background:var(--copper-soft); transform:translateY(-1px);}
+  .btn-outline{border:1px solid var(--line); color:var(--ink);}
+  .btn-outline:hover{border-color:var(--copper); color:var(--copper-soft);}
+
+  /* Signature: animated circuit trace */
+  .circuit-box{position:relative;}
+  .circuit-box svg{width:100%; height:auto; display:block;}
+  .trace{
+    fill:none; stroke:var(--blue-line); stroke-width:1.6;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.6s ease forwards .3s;
+  }
+  .trace-copper{stroke:var(--copper);}
+  @keyframes draw{ to{stroke-dashoffset:0;} }
+  .node{fill:var(--bg-panel); stroke:var(--ink-dim); stroke-width:1.2; opacity:0; animation:pop .4s ease forwards;}
+  .node-hot{stroke:var(--copper); fill:var(--copper);}
+  .node-lbl{font-family:'IBM Plex Mono',monospace; font-size:9px; fill:var(--ink-dim); opacity:0; animation:pop .4s ease forwards;}
+  @keyframes pop{ to{opacity:1;} }
+  @media (prefers-reduced-motion: reduce){
+    .trace{animation:none; stroke-dashoffset:0;}
+    .node,.node-lbl{animation:none; opacity:1;}
+  }
+
+  /* ── Section shell ── */
+  section{padding:84px 0; border-top:1px solid var(--line); position:relative;}
+  .sheet-label{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim);
+    letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .sheet-label .num{color:var(--copper-soft);}
+  .sheet-label::after{content:""; flex:1; height:1px; background:var(--line);}
+  h2.h-title{font-size:clamp(26px,3vw,34px); margin-bottom:20px;}
+
+  /* ── Chi siamo ── */
+  #chi-siamo .cs-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  #chi-siamo p{color:var(--ink-dim); margin-bottom:16px; max-width:56ch;}
+  .stat-strip{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .stat{background:var(--bg-panel); padding:22px 20px;}
+  .stat .n{font-family:'Space Grotesk',sans-serif; font-size:26px; color:var(--copper-soft); font-weight:700;}
+  .stat .l{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
+
+  /* ── Servizi ── */
+  .servizi-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .servizio{background:var(--bg-panel); padding:30px 28px;}
+  .servizio .idx{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--copper-soft); margin-bottom:14px;}
+  .servizio h3{font-size:18px; margin-bottom:10px;}
+  .servizio p{color:var(--ink-dim); font-size:14.5px;}
+
+  /* ── Progetti ── */
+  .prog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .prog-card{
+    aspect-ratio:4/3; border:1.5px dashed var(--line); border-radius:var(--radius);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    color:var(--ink-dim); background:var(--bg-panel-2);
+  }
+  .prog-card svg{width:34px; height:34px; opacity:.55;}
+  .prog-card .txt{font-family:'IBM Plex Mono',monospace; font-size:11px; text-align:center; padding:0 16px; letter-spacing:.02em;}
+  .prog-note{margin-top:22px; color:var(--ink-dim); font-size:13.5px; font-family:'IBM Plex Mono',monospace;}
+  .prog-note code{color:var(--copper-soft);}
+
+  /* ── Contatti ── */
+  .contatti-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  .info-line{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);}
+  .info-line:last-child{border-bottom:none;}
+  .info-line .k{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; width:110px; flex-shrink:0; padding-top:2px;}
+  .info-line .v{font-size:15px;}
+  .info-line a{text-decoration:none; color:var(--copper-soft);}
+  .info-line a:hover{text-decoration:underline;}
+
+  footer{border-top:1px solid var(--line); padding:32px 0; }
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  footer .f-note{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim);}
+
+  @media (max-width: 860px){
+    nav{position:fixed; top:64px; left:0; right:0; background:var(--bg-panel); flex-direction:column; padding:20px 28px; border-bottom:1px solid var(--line); display:none;}
+    nav.open{display:flex;}
+    .nav-toggle{display:block; background:none; border:1px solid var(--line); color:var(--ink); width:38px; height:38px; border-radius:var(--radius); font-size:16px; cursor:pointer;}
+    .hero-grid{grid-template-columns:1fr; gap:40px;}
+    #chi-siamo .cs-grid, .contatti-grid{grid-template-columns:1fr;}
+    .servizi-grid{grid-template-columns:1fr;}
+    .prog-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width: 520px){
+    .prog-grid{grid-template-columns:1fr;}
+    .stat-strip{grid-template-columns:1fr;}
+  }
+
+  :focus-visible{outline:2px solid var(--copper-soft); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">
+      <div class="mark">
+        <div class="tri"></div>
+        <span class="word">A EFFE</span>
+      </div>
+      <span class="sub">Wiring &amp; Service</span>
+    </div>
+    <button class="nav-toggle" aria-label="Apri menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+    <nav>
+      <a href="#chi-siamo">Chi siamo</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#progetti">Progetti</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:72px;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">San Marino — Cablaggi industriali</div>
+        <h1>Impianti elettrici e <em>cablaggi industriali</em>, fatti bene.</h1>
+        <p class="lead">Quadri elettrici, cablaggi e assistenza tecnica per aziende. Dalla lettura dello schema al collaudo finale, ogni commessa seguita nel dettaglio.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="#contatti">Richiedi un preventivo</a>
+          <a class="btn btn-outline" href="#progetti">Guarda i lavori</a>
+        </div>
+      </div>
+      <div class="circuit-box" aria-hidden="true">
+        <svg viewBox="0 0 420 340" xmlns="http://www.w3.org/2000/svg">
+          <path class="trace" d="M20 60 H140 V20 H300" />
+          <path class="trace" d="M20 60 V180 H90" style="animation-delay:.6s" />
+          <path class="trace trace-copper" d="M90 180 H240 V260 H340" style="animation-delay:1s" />
+          <path class="trace" d="M240 180 V120 H360" style="animation-delay:1.3s" />
+          <path class="trace" d="M140 20 V-10" style="animation-delay:.2s" />
+
+          <circle class="node" cx="20" cy="60" r="5" style="animation-delay:.9s"/>
+          <circle class="node" cx="300" cy="20" r="5" style="animation-delay:1.9s"/>
+          <circle class="node node-hot" cx="90" cy="180" r="5.5" style="animation-delay:1.4s"/>
+          <circle class="node node-hot" cx="340" cy="260" r="5.5" style="animation-delay:2.3s"/>
+          <circle class="node" cx="360" cy="120" r="5" style="animation-delay:2.1s"/>
+          <circle class="node" cx="240" cy="120" r="4" style="animation-delay:1.7s"/>
+
+          <text class="node-lbl" x="8" y="45" style="animation-delay:1.1s">Q1</text>
+          <text class="node-lbl" x="100" y="175" style="animation-delay:1.6s">L1</text>
+          <text class="node-lbl" x="308" y="15" style="animation-delay:2.1s">PE</text>
+          <text class="node-lbl" x="348" y="255" style="animation-delay:2.5s">N</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHI SIAMO -->
+  <section id="chi-siamo">
+    <div class="wrap">
+      <div class="sheet-label"><span class="num">§01</span> Chi siamo</div>
+      <div class="cs-grid">
+        <div>
+          <h2 class="h-title">Precisione tecnica, dalla commessa al collaudo.</h2>
+          <p>A Effe Wiring and Service è un'attività specializzata in cablaggi industriali e realizzazione di quadri elettrici, con sede a San Marino.</p>
+          <p>Lavoriamo principalmente per aziende del settore industriale, occupandoci dell'intero processo: dalla lettura degli schemi elettrici, al cablaggio dei quadri, fino al collaudo finale.</p>
+          <p>La precisione e l'affidabilità sono al centro di come lavoriamo — un quadro elettrico ben cablato non si vede, ma si sente nel funzionamento di tutto l'impianto.</p>
+        </div>
+        <div class="stat-strip">
+          <div class="stat"><div class="n">100%</div><div class="l">Commesse collaudate</div></div>
+          <div class="stat"><div class="n">SM</div><div class="l">Sede — San Marino</div></div>
+          <div class="stat"><div class="n">B2B</div><div class="l">Clienti industriali</div></div>
+          <div class="stat"><div class="n">A→Z</div><div class="l">Schema → collaudo</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIZI -->
+  <section id="servizi">
+    <div class="wrap">
+      <div class="sheet-label"><span class="num">§02</span> Servizi</div>
+      <h2 class="h-title">Cosa facciamo</h2>
+      <div class="servizi-grid">
+        <div class="servizio">
+          <div class="idx">01 / CABLAGGIO</div>
+          <h3>Cablaggio quadri elettrici</h3>
+          <p>Cablaggio di quadri elettrici industriali secondo schema, per macchinari e impianti di produzione, seguendo le specifiche tecniche fornite dal cliente.</p>
+        </div>
+        <div class="servizio">
+          <div class="idx">02 / SCHEMI</div>
+          <h3>Lettura e gestione schemi elettrici</h3>
+          <p>Interpretazione di schemi elettrici complessi e gestione della documentazione tecnica per ogni commessa, per tracciabilità e precisione in ogni fase.</p>
+        </div>
+        <div class="servizio">
+          <div class="idx">03 / ASSISTENZA</div>
+          <h3>Assistenza e manutenzione</h3>
+          <p>Interventi di assistenza tecnica su impianti esistenti, verifiche e manutenzione ordinaria su quadri e cablaggi.</p>
+        </div>
+        <div class="servizio">
+          <div class="idx">04 / COLLAUDO</div>
+          <h3>Collaudo e messa in servizio</h3>
+          <p>Controllo e collaudo finale di quadri e impianti prima della consegna, per assicurare il corretto funzionamento fin dal primo avvio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGETTI -->
+  <section id="progetti">
+    <div class="wrap">
+      <div class="sheet-label"><span class="num">§03</span> Progetti</div>
+      <h2 class="h-title">Lavori realizzati</h2>
+      <div class="prog-grid">
+        <div class="prog-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5M8 13h8M8 17h5"/></svg>
+          <div class="txt">Foto in arrivo</div>
+        </div>
+        <div class="prog-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5M8 13h8M8 17h5"/></svg>
+          <div class="txt">Foto in arrivo</div>
+        </div>
+        <div class="prog-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M8 4v5M8 13h8M8 17h5"/></svg>
+          <div class="txt">Foto in arrivo</div>
+        </div>
+      </div>
+      <p class="prog-note">Sostituisci queste caselle con le foto dei lavori — istruzioni in <code>LEGGIMI.md</code>.</p>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section id="contatti">
+    <div class="wrap">
+      <div class="sheet-label"><span class="num">§04</span> Contatti</div>
+      <div class="contatti-grid">
+        <div>
+          <h2 class="h-title">Parliamo del tuo progetto</h2>
+          <p style="color:var(--ink-dim); max-width:44ch;">Per informazioni, preventivi o assistenza tecnica, siamo a disposizione via email.</p>
+        </div>
+        <div>
+          <div class="info-line"><div class="k">Azienda</div><div class="v">A Effe di Forcellini Andrea</div></div>
+          <div class="info-line"><div class="k">COE</div><div class="v">SM 30256</div></div>
+          <div class="info-line"><div class="k">Indirizzo</div><div class="v">Via XXI Settembre 78, 47897<br>Fiorentino, Repubblica di San Marino</div></div>
+          <div class="info-line"><div class="k">Email</div><div class="v"><a href="mailto:forcellini@aeffewiring.com">forcellini@aeffewiring.com</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="logo"><div class="mark"><div class="tri" style="border-bottom-width:10px;border-left-width:6px;border-right-width:6px;"></div><span class="word" style="font-size:14px;">A EFFE</span></div></div>
+    <div class="f-note">© <span id="y"></span> A Effe Wiring and Service — San Marino</div>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
