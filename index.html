@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A Effe Wiring and Service — Cablaggi e quadri elettrici industriali</title>
-<meta name="description" content="Cablaggio quadri elettrici industriali, lettura schemi, assistenza e collaudo. A Effe Wiring and Service — San Marino.">
+<title>A Effe di Forcellini Andrea — Cablaggi e quadri elettrici industriali</title>
+<meta name="description" content="Cablaggio quadri elettrici industriali, lettura schemi, assistenza e collaudo. A Effe di Forcellini Andrea — San Marino.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
   body::before{
     content:"";
     position:fixed; inset:0;
-    background:radial-gradient(ellipse at 50% 0%, rgba(13,27,42,0.2), var(--bg) 70%);
+    background:radial-gradient(ellipse at 50% 0%, rgba(20,20,20,0.4), var(--bg) 70%);
     pointer-events:none; z-index:0;
   }
   h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
@@ -48,14 +48,14 @@
   /* ── Header ── */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(13,27,42,0.88);
+    background:rgba(10,10,10,0.9);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   header .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
   .logo{display:flex; align-items:center;}
-  .logo-img{height:50px; width:auto; border-radius:3px; display:block;}
-  .logo-img-sm{height:34px;}
+  .logo-img{height:74px; width:auto; border-radius:4px; display:block;}
+  .logo-img-sm{height:46px;}
   nav{display:flex; gap:32px;}
   nav a{
     font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase;
@@ -145,6 +145,10 @@
 
   /* ── Contatti ── */
   .contatti-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  .map-frame{
+    margin-top:48px; border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; height:340px; filter:grayscale(1) contrast(1.15) invert(0.92);
+  }
   .info-line{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);}
   .info-line:last-child{border-bottom:none;}
   .info-line .k{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; width:110px; flex-shrink:0; padding-top:2px;}
@@ -164,6 +168,7 @@
     #chi-siamo .cs-grid, .contatti-grid{grid-template-columns:1fr;}
     .servizi-grid{grid-template-columns:1fr;}
     .prog-grid{grid-template-columns:repeat(2,1fr);}
+    .map-frame{height:240px; margin-top:32px;}
   }
   @media (max-width: 520px){
     .prog-grid{grid-template-columns:1fr;}
@@ -178,7 +183,7 @@
 <header>
   <div class="wrap">
     <div class="logo">
-      <img src="logo.jpg" alt="A Effe Wiring and Service" class="logo-img">
+      <img src="logo.jpg" alt="A Effe di Forcellini Andrea" class="logo-img">
     </div>
     <button class="nav-toggle" aria-label="Apri menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
     <nav>
@@ -235,7 +240,7 @@
       <div class="cs-grid">
         <div>
           <h2 class="h-title">Precisione tecnica, dalla commessa al collaudo.</h2>
-          <p>A Effe Wiring and Service è un'attività specializzata in cablaggi industriali e realizzazione di quadri elettrici, con sede a San Marino.</p>
+          <p>A Effe di Forcellini Andrea è un'attività specializzata in cablaggi industriali e realizzazione di quadri elettrici, con sede a San Marino.</p>
           <p>Lavoriamo principalmente per aziende del settore industriale, occupandoci dell'intero processo: dalla lettura degli schemi elettrici, al cablaggio dei quadri, fino al collaudo finale.</p>
           <p>La precisione e l'affidabilità sono al centro di come lavoriamo — un quadro elettrico ben cablato non si vede, ma si sente nel funzionamento di tutto l'impianto.</p>
         </div>
@@ -298,7 +303,7 @@
           <div class="txt">Foto in arrivo</div>
         </div>
       </div>
-      <p class="prog-note">Sostituisci queste caselle con le foto dei lavori — istruzioni in <code>LEGGIMI.md</code>.</p>
+
     </div>
   </section>
 
@@ -318,15 +323,23 @@
           <div class="info-line"><div class="k">Email</div><div class="v"><a href="mailto:forcellini@aeffewiring.com">forcellini@aeffewiring.com</a></div></div>
         </div>
       </div>
+      <div class="map-frame">
+        <iframe
+          src="https://maps.google.com/maps?q=Via+XXI+Settembre+78,+47897+Fiorentino,+San+Marino&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" title="Mappa — A Effe di Forcellini Andrea">
+        </iframe>
+      </div>
     </div>
   </section>
+
 
 </main>
 
 <footer>
   <div class="wrap">
-    <div class="logo"><img src="logo.jpg" alt="A Effe Wiring and Service" class="logo-img logo-img-sm"></div>
-    <div class="f-note">© <span id="y"></span> A Effe Wiring and Service — San Marino</div>
+    <div class="logo"><img src="logo.jpg" alt="A Effe di Forcellini Andrea" class="logo-img logo-img-sm"></div>
+    <div class="f-note">© <span id="y"></span> A Effe di Forcellini Andrea — San Marino</div>
   </div>
 </footer>
 
