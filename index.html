@@ -51,7 +51,7 @@
   }
   header .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
   .logo{display:flex; align-items:center; text-decoration:none;}
-  .logo-img{height:74px; width:auto; border-radius:4px; display:block; transition:opacity .15s ease;}
+  .logo-img{height:110px; width:auto; border-radius:4px; display:block; transition:opacity .15s ease;}
   .logo:hover .logo-img{opacity:.85;}
   .logo-img-sm{height:46px;}
   nav{display:flex; gap:32px;}
@@ -126,22 +126,55 @@
 
   /* ── Section shell ── */
   section{padding:84px 0; border-top:1px solid var(--line); position:relative;}
+  /* Animazione all'ingresso in vista: si applica a tutta la sezione (non solo
+     all'etichetta "§"), con titolo/testo/card che compaiono in cascata */
   .sheet-label{
     font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--ink-dim);
     letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:10px;
+  }
+  .sheet-label .num{color:var(--accent-soft);}
+  .sheet-label::after{content:""; flex:1; height:1px; background:var(--line);}
+  h2.h-title{font-size:clamp(26px,3vw,34px); margin-bottom:20px;}
+
+  section:has(.sheet-label) .sheet-label{
     opacity:0; transform:translateX(-10px); transition:opacity .55s ease, transform .55s ease;
   }
-  .sheet-label.in-view{opacity:1; transform:translateX(0);}
-  .sheet-label .num{color:var(--accent-soft);}
-  .sheet-label::after{
-    content:""; flex:1; height:1px; background:var(--line);
+  section:has(.sheet-label).in-view .sheet-label{opacity:1; transform:translateX(0);}
+  section:has(.sheet-label) .sheet-label::after{
     transform:scaleX(0); transform-origin:left; transition:transform .8s cubic-bezier(.3,.7,.2,1) .2s;
   }
-  .sheet-label.in-view::after{transform:scaleX(1);}
-  @media (prefers-reduced-motion: reduce){
-    .sheet-label,.sheet-label::after{opacity:1; transform:none; transition:none;}
+  section:has(.sheet-label).in-view .sheet-label::after{transform:scaleX(1);}
+
+  /* Il resto del contenuto della sezione (titolo, testo, griglie) compare a cascata */
+  section:has(.sheet-label) .wrap > *:not(.sheet-label){
+    opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;
   }
-  h2.h-title{font-size:clamp(26px,3vw,34px); margin-bottom:20px;}
+  section:has(.sheet-label).in-view .wrap > *:not(.sheet-label){opacity:1; transform:translateY(0);}
+  section:has(.sheet-label) .wrap > *:nth-child(2){transition-delay:.1s;}
+  section:has(.sheet-label) .wrap > *:nth-child(3){transition-delay:.2s;}
+  section:has(.sheet-label) .wrap > *:nth-child(4){transition-delay:.3s;}
+  section:has(.sheet-label) .wrap > *:nth-child(5){transition-delay:.4s;}
+
+  /* Cascata ulteriore dentro le griglie di card, per un effetto più curato */
+  .cs-grid > *,.servizi-grid > *,.prog-grid > *,.stat-strip > *,.contatti-grid > *{
+    opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;
+  }
+  section.in-view .cs-grid > *,section.in-view .servizi-grid > *,
+  section.in-view .prog-grid > *,section.in-view .stat-strip > *,
+  section.in-view .contatti-grid > *{opacity:1; transform:translateY(0);}
+  .servizi-grid > *:nth-child(1),.prog-grid > *:nth-child(1),.stat-strip > *:nth-child(1){transition-delay:.25s;}
+  .servizi-grid > *:nth-child(2),.prog-grid > *:nth-child(2),.stat-strip > *:nth-child(2){transition-delay:.32s;}
+  .servizi-grid > *:nth-child(3),.prog-grid > *:nth-child(3),.stat-strip > *:nth-child(3){transition-delay:.39s;}
+  .servizi-grid > *:nth-child(4),.stat-strip > *:nth-child(4){transition-delay:.46s;}
+
+  @media (prefers-reduced-motion: reduce){
+    section:has(.sheet-label) .sheet-label,
+    section:has(.sheet-label) .sheet-label::after,
+    section:has(.sheet-label) .wrap > *,
+    .cs-grid > *,.servizi-grid > *,.prog-grid > *,.stat-strip > *,.contatti-grid > *{
+      opacity:1; transform:none; transition:none;
+    }
+  }
 
   /* ── Chi siamo ── */
   #chi-siamo .cs-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
@@ -652,12 +685,15 @@
 </script>
 <script>
 (function(){
-  var righe = document.querySelectorAll('.sheet-label');
-  if (!righe.length) return;
+  var sezioni = Array.prototype.filter.call(
+    document.querySelectorAll('section'),
+    function(s){ return s.querySelector('.sheet-label'); }
+  );
+  if (!sezioni.length) return;
 
   var riduciMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (riduciMovimento || !('IntersectionObserver' in window)){
-    righe.forEach(function(r){ r.classList.add('in-view'); });
+    sezioni.forEach(function(s){ s.classList.add('in-view'); });
     return;
   }
 
@@ -668,9 +704,9 @@
         osservatore.unobserve(entry.target);
       }
     });
-  }, {threshold:0.5, rootMargin:'0px 0px -40px 0px'});
+  }, {threshold:0.2, rootMargin:'0px 0px -60px 0px'});
 
-  righe.forEach(function(r){ osservatore.observe(r); });
+  sezioni.forEach(function(s){ osservatore.observe(s); });
 })();
 </script>
 </body>
