@@ -136,41 +136,41 @@
   .sheet-label::after{content:""; flex:1; height:1px; background:var(--line);}
   h2.h-title{font-size:clamp(26px,3vw,34px); margin-bottom:20px;}
 
-  section:has(.sheet-label) .sheet-label{
+  .reveal .sheet-label{
     opacity:0; transform:translateX(-10px); transition:opacity .55s ease, transform .55s ease;
   }
-  section:has(.sheet-label).in-view .sheet-label{opacity:1; transform:translateX(0);}
-  section:has(.sheet-label) .sheet-label::after{
+  .reveal.in-view .sheet-label{opacity:1; transform:translateX(0);}
+  .reveal .sheet-label::after{
     transform:scaleX(0); transform-origin:left; transition:transform .8s cubic-bezier(.3,.7,.2,1) .2s;
   }
-  section:has(.sheet-label).in-view .sheet-label::after{transform:scaleX(1);}
+  .reveal.in-view .sheet-label::after{transform:scaleX(1);}
 
   /* Il resto del contenuto della sezione (titolo, testo, griglie) compare a cascata */
-  section:has(.sheet-label) .wrap > *:not(.sheet-label){
+  .reveal .wrap > *:not(.sheet-label){
     opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;
   }
-  section:has(.sheet-label).in-view .wrap > *:not(.sheet-label){opacity:1; transform:translateY(0);}
-  section:has(.sheet-label) .wrap > *:nth-child(2){transition-delay:.1s;}
-  section:has(.sheet-label) .wrap > *:nth-child(3){transition-delay:.2s;}
-  section:has(.sheet-label) .wrap > *:nth-child(4){transition-delay:.3s;}
-  section:has(.sheet-label) .wrap > *:nth-child(5){transition-delay:.4s;}
+  .reveal.in-view .wrap > *:not(.sheet-label){opacity:1; transform:translateY(0);}
+  .reveal .wrap > *:nth-child(2){transition-delay:.1s;}
+  .reveal .wrap > *:nth-child(3){transition-delay:.2s;}
+  .reveal .wrap > *:nth-child(4){transition-delay:.3s;}
+  .reveal .wrap > *:nth-child(5){transition-delay:.4s;}
 
   /* Cascata ulteriore dentro le griglie di card, per un effetto più curato */
   .cs-grid > *,.servizi-grid > *,.prog-grid > *,.stat-strip > *,.contatti-grid > *{
     opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;
   }
-  section.in-view .cs-grid > *,section.in-view .servizi-grid > *,
-  section.in-view .prog-grid > *,section.in-view .stat-strip > *,
-  section.in-view .contatti-grid > *{opacity:1; transform:translateY(0);}
+  .reveal.in-view .cs-grid > *,.reveal.in-view .servizi-grid > *,
+  .reveal.in-view .prog-grid > *,.reveal.in-view .stat-strip > *,
+  .reveal.in-view .contatti-grid > *{opacity:1; transform:translateY(0);}
   .servizi-grid > *:nth-child(1),.prog-grid > *:nth-child(1),.stat-strip > *:nth-child(1){transition-delay:.25s;}
   .servizi-grid > *:nth-child(2),.prog-grid > *:nth-child(2),.stat-strip > *:nth-child(2){transition-delay:.32s;}
   .servizi-grid > *:nth-child(3),.prog-grid > *:nth-child(3),.stat-strip > *:nth-child(3){transition-delay:.39s;}
   .servizi-grid > *:nth-child(4),.stat-strip > *:nth-child(4){transition-delay:.46s;}
 
   @media (prefers-reduced-motion: reduce){
-    section:has(.sheet-label) .sheet-label,
-    section:has(.sheet-label) .sheet-label::after,
-    section:has(.sheet-label) .wrap > *,
+    .reveal .sheet-label,
+    .reveal .sheet-label::after,
+    .reveal .wrap > *,
     .cs-grid > *,.servizi-grid > *,.prog-grid > *,.stat-strip > *,.contatti-grid > *{
       opacity:1; transform:none; transition:none;
     }
@@ -434,7 +434,7 @@
   </section>
 
   <!-- CHI SIAMO -->
-  <section id="chi-siamo">
+  <section id="chi-siamo" class="reveal">
     <div class="wrap">
       <div class="sheet-label"><span class="num">§01</span> Chi siamo</div>
       <div class="cs-grid">
@@ -455,7 +455,7 @@
   </section>
 
   <!-- SERVIZI -->
-  <section id="servizi">
+  <section id="servizi" class="reveal">
     <div class="wrap">
       <div class="sheet-label"><span class="num">§02</span> Servizi</div>
       <h2 class="h-title">Cosa facciamo</h2>
@@ -485,7 +485,7 @@
   </section>
 
   <!-- PROGETTI -->
-  <section id="progetti">
+  <section id="progetti" class="reveal">
     <div class="wrap">
       <div class="sheet-label"><span class="num">§03</span> Progetti</div>
       <h2 class="h-title">Lavori realizzati</h2>
@@ -508,7 +508,7 @@
   </section>
 
   <!-- PREVENTIVO -->
-  <section id="preventivo">
+  <section id="preventivo" class="reveal">
     <div class="wrap">
       <div class="sheet-label"><span class="num">§04</span> Preventivo</div>
       <h2 class="h-title">Richiedi un preventivo</h2>
@@ -550,7 +550,7 @@
   </section>
 
   <!-- CONTATTI -->
-  <section id="contatti">
+  <section id="contatti" class="reveal">
     <div class="wrap">
       <div class="sheet-label"><span class="num">§05</span> Contatti</div>
       <div class="contatti-grid">
@@ -685,10 +685,7 @@
 </script>
 <script>
 (function(){
-  var sezioni = Array.prototype.filter.call(
-    document.querySelectorAll('section'),
-    function(s){ return s.querySelector('.sheet-label'); }
-  );
+  var sezioni = document.querySelectorAll('.reveal');
   if (!sezioni.length) return;
 
   var riduciMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
