@@ -19,7 +19,7 @@ Vai su https://github.com/signup e registrati (gratis).
 ## 3. Carica i file (senza bisogno di comandi/git)
 
 1. Nella pagina del repository appena creato, clicca **"uploading an existing file"** (o **Add file → Upload files**)
-2. Trascina dentro **tutti i file** di questa cartella: `index.html`, `CNAME`, `logo.jpg`, `robots.txt` e `sitemap.xml`
+2. Trascina dentro **tutti i file** di questa cartella: `index.html`, `privacy.html`, `cookie.html`, `policies.html`, `404.html`, `CNAME`, `logo.jpg`, `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `og-image.png`, `robots.txt` e `sitemap.xml`
 3. Scorri in basso, clicca **Commit changes**
 
 ## 4. Attiva GitHub Pages
