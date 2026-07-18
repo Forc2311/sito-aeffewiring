@@ -50,8 +50,9 @@
     border-bottom:1px solid var(--line);
   }
   header .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
-  .logo{display:flex; align-items:center;}
-  .logo-img{height:74px; width:auto; border-radius:4px; display:block;}
+  .logo{display:flex; align-items:center; text-decoration:none;}
+  .logo-img{height:74px; width:auto; border-radius:4px; display:block; transition:opacity .15s ease;}
+  .logo:hover .logo-img{opacity:.85;}
   .logo-img-sm{height:46px;}
   nav{display:flex; gap:32px;}
   nav a{
@@ -128,9 +129,18 @@
   .sheet-label{
     font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--ink-dim);
     letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:10px;
+    opacity:0; transform:translateX(-10px); transition:opacity .55s ease, transform .55s ease;
   }
+  .sheet-label.in-view{opacity:1; transform:translateX(0);}
   .sheet-label .num{color:var(--accent-soft);}
-  .sheet-label::after{content:""; flex:1; height:1px; background:var(--line);}
+  .sheet-label::after{
+    content:""; flex:1; height:1px; background:var(--line);
+    transform:scaleX(0); transform-origin:left; transition:transform .8s cubic-bezier(.3,.7,.2,1) .2s;
+  }
+  .sheet-label.in-view::after{transform:scaleX(1);}
+  @media (prefers-reduced-motion: reduce){
+    .sheet-label,.sheet-label::after{opacity:1; transform:none; transition:none;}
+  }
   h2.h-title{font-size:clamp(26px,3vw,34px); margin-bottom:20px;}
 
   /* ── Chi siamo ── */
@@ -268,9 +278,9 @@
 
 <header>
   <div class="wrap">
-    <div class="logo">
+    <a class="logo" href="index.html" aria-label="Torna alla home">
       <img src="logo.jpg" alt="A Effe di Forcellini Andrea" class="logo-img">
-    </div>
+    </a>
     <button class="nav-toggle" aria-label="Apri menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
     <nav>
       <a href="#chi-siamo">Chi siamo</a>
@@ -469,24 +479,23 @@
     <div class="wrap">
       <div class="sheet-label"><span class="num">§04</span> Preventivo</div>
       <h2 class="h-title">Richiedi un preventivo</h2>
-      <p class="qf-intro">Compila il modulo con la tua richiesta: ti risponderemo il prima possibile.
-        Email o telefono sono obbligatori, così possiamo ricontattarti.</p>
+      <p class="qf-intro">Compila il modulo con la tua richiesta: ti risponderemo il prima possibile.</p>
 
       <form id="form-preventivo" class="quote-form" novalidate>
-        <div class="qf-row">
-          <label for="qf-azienda">Nome azienda *</label>
-          <input type="text" id="qf-azienda" name="azienda" required>
-        </div>
-
         <div class="qf-row qf-two">
           <div>
-            <label for="qf-email">Email</label>
-            <input type="email" id="qf-email" name="email">
+            <label for="qf-nome">Nome *</label>
+            <input type="text" id="qf-nome" name="nome" required>
           </div>
           <div>
-            <label for="qf-telefono">Telefono</label>
-            <input type="tel" id="qf-telefono" name="telefono">
+            <label for="qf-azienda">Società *</label>
+            <input type="text" id="qf-azienda" name="azienda" required>
           </div>
+        </div>
+
+        <div class="qf-row">
+          <label for="qf-telefono">Telefono *</label>
+          <input type="tel" id="qf-telefono" name="telefono" required>
         </div>
 
         <div class="qf-row">
@@ -541,7 +550,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="logo"><img src="logo.jpg" alt="A Effe di Forcellini Andrea" class="logo-img logo-img-sm"></div>
+    <a class="logo" href="index.html" aria-label="Torna alla home"><img src="logo.jpg" alt="A Effe di Forcellini Andrea" class="logo-img logo-img-sm"></a>
     <div class="footer-right">
       <a href="policies.html" class="policies-link" title="Privacy e Cookie">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/></svg>
@@ -575,30 +584,21 @@
     e.preventDefault();
     errBox.classList.remove('show');
 
-    // Campi obbligatori standard (nome azienda, messaggio, consenso privacy)
+    // Campi obbligatori: nome, società, telefono, messaggio, consenso privacy
     if (!form.checkValidity()){
       form.reportValidity();
       return;
     }
 
-    var email = form.email.value.trim();
-    var telefono = form.telefono.value.trim();
-
-    // Regola speciale: email o telefono, almeno uno dei due
-    if (!email && !telefono){
-      errBox.textContent = 'Inserisci almeno un\'email o un numero di telefono, per poterti ricontattare.';
-      errBox.classList.add('show');
-      errBox.scrollIntoView({behavior:'smooth', block:'center'});
-      return;
-    }
-
+    var nome = form.nome.value.trim();
     var azienda = form.azienda.value.trim();
+    var telefono = form.telefono.value.trim();
     var messaggio = form.messaggio.value.trim();
 
-    var corpo = 'Azienda: ' + azienda + '\n';
-    if (email) corpo += 'Email: ' + email + '\n';
-    if (telefono) corpo += 'Telefono: ' + telefono + '\n';
-    corpo += '\nMessaggio:\n' + messaggio;
+    var corpo = 'Nome: ' + nome + '\n'
+      + 'Società: ' + azienda + '\n'
+      + 'Telefono: ' + telefono + '\n'
+      + '\nMessaggio:\n' + messaggio;
 
     var link = 'mailto:forcellini@aeffewiring.com'
       + '?subject=' + encodeURIComponent('Richiesta preventivo — ' + azienda)
@@ -648,6 +648,29 @@
     try { localStorage.setItem(KEY, 'necessary'); } catch(e){}
     banner.classList.remove('show');
   });
+})();
+</script>
+<script>
+(function(){
+  var righe = document.querySelectorAll('.sheet-label');
+  if (!righe.length) return;
+
+  var riduciMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (riduciMovimento || !('IntersectionObserver' in window)){
+    righe.forEach(function(r){ r.classList.add('in-view'); });
+    return;
+  }
+
+  var osservatore = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        osservatore.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.5, rootMargin:'0px 0px -40px 0px'});
+
+  righe.forEach(function(r){ osservatore.observe(r); });
 })();
 </script>
 </body>
