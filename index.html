@@ -163,6 +163,28 @@
   .prog-note{margin-top:22px; color:var(--ink-dim); font-size:13.5px; font-family:'IBM Plex Mono',monospace;}
   .prog-note code{color:var(--accent-soft);}
 
+  /* ── Preventivo ── */
+  .qf-intro{color:var(--ink-dim); max-width:56ch; margin-bottom:32px;}
+  .quote-form{max-width:640px;}
+  .qf-row{margin-bottom:20px;}
+  .qf-two{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .quote-form label{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;}
+  .quote-form input[type=text],.quote-form input[type=email],.quote-form input[type=tel],.quote-form textarea{
+    width:100%; background:var(--bg-panel); border:1px solid var(--line); color:var(--ink);
+    border-radius:var(--radius); padding:11px 13px; font-family:'IBM Plex Sans',sans-serif; font-size:14.5px;
+  }
+  .quote-form input:focus,.quote-form textarea:focus{outline:none; border-color:var(--accent);}
+  .quote-form textarea{resize:vertical; min-height:100px;}
+  .qf-error{display:none; background:rgba(200,60,60,.12); border:1px solid #a34848; color:#e8a3a3;
+    padding:10px 14px; border-radius:var(--radius); font-size:13.5px; margin-bottom:18px;}
+  .qf-error.show{display:block;}
+  .qf-privacy{display:flex; align-items:flex-start; gap:10px; margin-bottom:24px; cursor:pointer;}
+  .qf-privacy input{margin-top:3px; flex-shrink:0;}
+  .qf-privacy span{font-size:13.5px; color:var(--ink-dim); line-height:1.5;}
+  .qf-privacy a{color:var(--ink); text-decoration:underline;}
+  .qf-note{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim); margin-top:12px;}
+
   /* ── Contatti ── */
   .contatti-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
   .map-frame{
@@ -188,7 +210,7 @@
     nav.open{display:flex;}
     .nav-toggle{display:block; background:none; border:1px solid var(--line); color:var(--ink); width:38px; height:38px; border-radius:var(--radius); font-size:16px; cursor:pointer;}
     .hero-grid{grid-template-columns:1fr; gap:40px;}
-    #chi-siamo .cs-grid, .contatti-grid{grid-template-columns:1fr;}
+    #chi-siamo .cs-grid, .contatti-grid, .qf-two{grid-template-columns:1fr;}
     .servizi-grid{grid-template-columns:1fr;}
     .prog-grid{grid-template-columns:repeat(2,1fr);}
     .map-frame{height:240px; margin-top:32px;}
@@ -234,6 +256,7 @@
       <a href="#chi-siamo">Chi siamo</a>
       <a href="#servizi">Servizi</a>
       <a href="#progetti">Progetti</a>
+      <a href="#preventivo">Preventivo</a>
       <a href="#contatti">Contatti</a>
     </nav>
   </div>
@@ -249,7 +272,7 @@
         <h1>Impianti elettrici e <em>cablaggi industriali</em>, fatti bene.</h1>
         <p class="lead">Quadri elettrici, cablaggi e assistenza tecnica per aziende. Dalla lettura dello schema al collaudo finale, ogni commessa seguita nel dettaglio.</p>
         <div class="cta-row">
-          <a class="btn btn-solid" href="#contatti">Richiedi un preventivo</a>
+          <a class="btn btn-solid" href="#preventivo">Richiedi un preventivo</a>
           <a class="btn btn-outline" href="#progetti">Guarda i lavori</a>
         </div>
       </div>
@@ -421,10 +444,53 @@
     </div>
   </section>
 
+  <!-- PREVENTIVO -->
+  <section id="preventivo">
+    <div class="wrap">
+      <div class="sheet-label"><span class="num">§04</span> Preventivo</div>
+      <h2 class="h-title">Richiedi un preventivo</h2>
+      <p class="qf-intro">Compila il modulo con la tua richiesta: ti risponderemo il prima possibile.
+        Email o telefono sono obbligatori, così possiamo ricontattarti.</p>
+
+      <form id="form-preventivo" class="quote-form" novalidate>
+        <div class="qf-row">
+          <label for="qf-azienda">Nome azienda *</label>
+          <input type="text" id="qf-azienda" name="azienda" required>
+        </div>
+
+        <div class="qf-row qf-two">
+          <div>
+            <label for="qf-email">Email</label>
+            <input type="email" id="qf-email" name="email">
+          </div>
+          <div>
+            <label for="qf-telefono">Telefono</label>
+            <input type="tel" id="qf-telefono" name="telefono">
+          </div>
+        </div>
+
+        <div class="qf-row">
+          <label for="qf-messaggio">Messaggio *</label>
+          <textarea id="qf-messaggio" name="messaggio" required rows="5" placeholder="Descrivi brevemente cosa ti serve..."></textarea>
+        </div>
+
+        <div class="qf-error" id="qf-error"></div>
+
+        <label class="qf-privacy">
+          <input type="checkbox" id="qf-privacy" name="privacy" required>
+          <span>Ho letto e accetto l'<a href="privacy.html" target="_blank" rel="noopener">informativa sulla privacy</a> *</span>
+        </label>
+
+        <button type="submit" class="btn btn-solid">Invia richiesta</button>
+        <p class="qf-note">L'invio apre il tuo programma di posta con l'email già pronta — nessun dato passa da server esterni.</p>
+      </form>
+    </div>
+  </section>
+
   <!-- CONTATTI -->
   <section id="contatti">
     <div class="wrap">
-      <div class="sheet-label"><span class="num">§04</span> Contatti</div>
+      <div class="sheet-label"><span class="num">§05</span> Contatti</div>
       <div class="contatti-grid">
         <div>
           <h2 class="h-title">Parliamo del tuo progetto</h2>
@@ -461,5 +527,48 @@
 </footer>
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<script>
+(function(){
+  var form = document.getElementById('form-preventivo');
+  if (!form) return;
+  var errBox = document.getElementById('qf-error');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    errBox.classList.remove('show');
+
+    // Campi obbligatori standard (nome azienda, messaggio, consenso privacy)
+    if (!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    var email = form.email.value.trim();
+    var telefono = form.telefono.value.trim();
+
+    // Regola speciale: email o telefono, almeno uno dei due
+    if (!email && !telefono){
+      errBox.textContent = 'Inserisci almeno un\'email o un numero di telefono, per poterti ricontattare.';
+      errBox.classList.add('show');
+      errBox.scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
+    var azienda = form.azienda.value.trim();
+    var messaggio = form.messaggio.value.trim();
+
+    var corpo = 'Azienda: ' + azienda + '\n';
+    if (email) corpo += 'Email: ' + email + '\n';
+    if (telefono) corpo += 'Telefono: ' + telefono + '\n';
+    corpo += '\nMessaggio:\n' + messaggio;
+
+    var link = 'mailto:forcellini@aeffewiring.com'
+      + '?subject=' + encodeURIComponent('Richiesta preventivo — ' + azienda)
+      + '&body=' + encodeURIComponent(corpo);
+
+    window.location.href = link;
+  });
+})();
+</script>
 </body>
 </html>
