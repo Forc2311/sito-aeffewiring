@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cookie Policy — A Effe Wiring and Service</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#0a0a0a; --bg-panel:#141414; --line:#2b2b2b;
+    --ink:#f5f5f4; --ink-dim:#8c8c88; --accent:#ffffff; --radius:4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    line-height:1.7; padding:0 24px 80px;
+  }
+  h1,h2{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; font-weight:600;}
+  .wrap{max-width:720px; margin:0 auto;}
+  header{padding:32px 0 24px; display:flex; align-items:center; gap:16px;}
+  .logo-img{height:44px; border-radius:3px;}
+  h1{font-size:26px; margin:32px 0 8px;}
+  .updated{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:12px; color:var(--ink-dim); margin-bottom:32px;}
+  h2{font-size:17px; margin:32px 0 10px;}
+  p,li{color:var(--ink-dim); font-size:15px; margin-bottom:12px;}
+  ul{padding-left:20px; margin-bottom:16px;}
+  a{color:var(--ink);}
+  .back{display:inline-block; margin-top:40px; font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:13px; color:var(--ink-dim); text-decoration:none;}
+  .back:hover{color:var(--accent);}
+  .box{background:var(--bg-panel); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px; margin:20px 0;}
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:13.5px;}
+  th{text-align:left; font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:10.5px;
+     text-transform:uppercase; letter-spacing:.05em; color:var(--ink-dim); padding:8px 10px; border-bottom:1px solid var(--line);}
+  td{padding:8px 10px; border-bottom:1px solid var(--line); color:var(--ink); vertical-align:top;}
+  .btn-reset{
+    font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:12px;
+    background:var(--bg-panel); color:var(--ink); border:1px solid var(--line); border-radius:var(--radius);
+    padding:9px 16px; cursor:pointer; margin-top:8px;
+  }
+  .btn-reset:hover{border-color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html"><img src="logo.jpg" alt="A Effe Wiring and Service" class="logo-img"></a>
+  </header>
+
+  <h1>Cookie Policy</h1>
+  <div class="updated">aeffewiring.com</div>
+
+  <h2>Cosa sono i cookie</h2>
+  <p>I cookie sono piccoli file che i siti salvano sul tuo dispositivo per ricordare
+     informazioni tra una visita e l'altra. Alcuni sono indispensabili per il
+     funzionamento del sito, altri (come quelli di servizi esterni) permettono
+     funzionalità aggiuntive ma comportano il trasferimento di alcuni dati a terzi.</p>
+
+  <div class="box">
+    <p style="margin-bottom:0"><strong>In breve:</strong> questo sito non usa cookie di
+    profilazione, pubblicità o analisi statistica. L'unico elemento che coinvolge un
+    servizio esterno con cookie propri è la <strong>mappa di Google Maps</strong> nella
+    pagina Contatti, e si carica <strong>solo se la attivi tu esplicitamente</strong>.</p>
+  </div>
+
+  <h2>Cookie tecnici (sempre attivi)</h2>
+  <table>
+    <tr><th>Nome</th><th>Scopo</th><th>Durata</th></tr>
+    <tr>
+      <td>aeffe_cookie_consent</td>
+      <td>Ricorda la tua scelta sul banner dei cookie, per non richiederla ad ogni visita.
+        (Tecnicamente salvato in memoria locale del browser, non un cookie tradizionale,
+        ma con la stessa funzione.)</td>
+      <td>Fino a cancellazione manuale</td>
+    </tr>
+  </table>
+  <p>Questo dato è strettamente necessario al funzionamento del banner stesso: non
+     richiede consenso, come previsto dalla normativa.</p>
+
+  <h2>Google Maps (solo su tua attivazione)</h2>
+  <table>
+    <tr><th>Servizio</th><th>Cosa succede</th><th>Attivazione</th></tr>
+    <tr>
+      <td>Google Maps</td>
+      <td>Mostra la mappa con la nostra sede. Una volta caricata, Google può impostare
+        propri cookie e ricevere il tuo indirizzo IP, secondo la
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">informativa privacy di Google</a>.</td>
+      <td>Solo se clicchi "Accetta tutti" nel banner, o "Carica la mappa" nella pagina Contatti</td>
+    </tr>
+  </table>
+
+  <h2>Cosa NON usiamo</h2>
+  <ul>
+    <li>Nessun cookie di tracciamento pubblicitario</li>
+    <li>Nessun servizio di analisi statistica (es. Google Analytics)</li>
+    <li>Nessun pixel di social network</li>
+    <li>Nessun font caricato da server esterni — usiamo solo i font già presenti sul tuo dispositivo</li>
+  </ul>
+
+  <h2>Come gestire la tua scelta</h2>
+  <p>Puoi cambiare idea in qualsiasi momento cancellando i dati di navigazione del tuo
+     browser per questo sito, oppure da qui:</p>
+  <button class="btn-reset" onclick="localStorage.removeItem('aeffe_cookie_consent'); alert('Preferenza cancellata. Ricaricando la pagina principale il banner ricomparirà.');">Cancella la mia scelta sui cookie</button>
+
+  <h2>Domande</h2>
+  <p>Per qualunque domanda su questa Cookie Policy, scrivi a
+     <a href="mailto:forcellini@aeffewiring.com">forcellini@aeffewiring.com</a>.</p>
+
+  <a class="back" href="policies.html">← Torna a Privacy &amp; Cookie</a>
+</div>
+</body>
+</html>

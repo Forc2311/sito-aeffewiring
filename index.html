@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A Effe di Forcellini Andrea — Cablaggi e quadri elettrici industriali</title>
 <meta name="description" content="Cablaggio quadri elettrici industriali, lettura schemi, assistenza e collaudo. A Effe di Forcellini Andrea — San Marino.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#0a0a0a;
@@ -25,7 +22,7 @@
   body{
     background:var(--bg);
     color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
     line-height:1.6;
     background-image:
       linear-gradient(var(--line) 1px, transparent 1px),
@@ -40,8 +37,8 @@
     background:radial-gradient(ellipse at 50% 0%, rgba(20,20,20,0.4), var(--bg) 70%);
     pointer-events:none; z-index:0;
   }
-  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
-  .mono{font-family:'IBM Plex Mono', monospace;}
+  h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .mono{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace;}
   a{color:inherit;}
   .wrap{max-width:1080px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
 
@@ -58,7 +55,7 @@
   .logo-img-sm{height:46px;}
   nav{display:flex; gap:32px;}
   nav a{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase;
+    font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:12px; text-transform:uppercase;
     letter-spacing:0.08em; color:var(--ink-dim); text-decoration:none;
     padding-bottom:4px; border-bottom:1px solid transparent; transition:color .2s, border-color .2s;
   }
@@ -69,7 +66,7 @@
   .hero{padding:96px 0 88px; position:relative;}
   .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
   .eyebrow{
-    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.14em;
+    font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:12px; letter-spacing:0.14em;
     color:var(--accent-soft); text-transform:uppercase; margin-bottom:18px; display:flex; align-items:center; gap:10px;
   }
   .eyebrow::before{content:""; width:22px; height:1px; background:var(--accent);}
@@ -78,7 +75,7 @@
   .hero p.lead{color:var(--ink-dim); font-size:17px; max-width:46ch; margin-bottom:34px;}
   .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
   .btn{
-    font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:0.04em;
+    font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:13px; letter-spacing:0.04em;
     padding:13px 26px; border-radius:var(--radius); text-decoration:none; display:inline-block;
     transition:transform .15s, background .2s, border-color .2s;
   }
@@ -99,14 +96,14 @@
   @keyframes draw{ to{stroke-dashoffset:0;} }
   .node{fill:var(--bg-panel); stroke:var(--ink-dim); stroke-width:1.2; opacity:0; animation:pop .4s ease forwards; transition:r .18s ease, fill .18s ease, stroke .18s ease;}
   .node-hot{stroke:var(--accent); fill:var(--accent);}
-  .node-lbl{font-family:'IBM Plex Mono',monospace; font-size:9px; fill:var(--ink-dim); opacity:0; animation:pop .4s ease forwards;}
+  .node-lbl{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:9px; fill:var(--ink-dim); opacity:0; animation:pop .4s ease forwards;}
   @keyframes pop{ to{opacity:1;} }
   .node-group{cursor:pointer;}
   .node-group .tip{opacity:0; transition:opacity .16s ease; pointer-events:none;}
   .node-group:hover .tip{opacity:1;}
   .node-group:hover .node{r:7.5; fill:var(--accent); stroke:var(--accent);}
   .tip rect{fill:var(--bg-panel); stroke:var(--line); stroke-width:1;}
-  .tip text{fill:var(--ink); font-family:'IBM Plex Mono',monospace; font-size:9.5px;}
+  .tip text{fill:var(--ink); font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:9.5px;}
   .circuit-box svg:has(.n-q1:hover) .t-a,
   .circuit-box svg:has(.n-q1:hover) .t-b,
   .circuit-box svg:has(.n-pe:hover) .t-a,
@@ -129,7 +126,7 @@
   /* ── Section shell ── */
   section{padding:84px 0; border-top:1px solid var(--line); position:relative;}
   .sheet-label{
-    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim);
+    font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--ink-dim);
     letter-spacing:0.1em; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:10px;
   }
   .sheet-label .num{color:var(--accent-soft);}
@@ -141,13 +138,13 @@
   #chi-siamo p{color:var(--ink-dim); margin-bottom:16px; max-width:56ch;}
   .stat-strip{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
   .stat{background:var(--bg-panel); padding:22px 20px;}
-  .stat .n{font-family:'Space Grotesk',sans-serif; font-size:26px; color:var(--accent-soft); font-weight:700;}
-  .stat .l{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
+  .stat .n{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; font-size:26px; color:var(--accent-soft); font-weight:700;}
+  .stat .l{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:10.5px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px;}
 
   /* ── Servizi ── */
   .servizi-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
   .servizio{background:var(--bg-panel); padding:30px 28px;}
-  .servizio .idx{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--accent-soft); margin-bottom:14px;}
+  .servizio .idx{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--accent-soft); margin-bottom:14px;}
   .servizio h3{font-size:18px; margin-bottom:10px;}
   .servizio p{color:var(--ink-dim); font-size:14.5px;}
 
@@ -159,8 +156,8 @@
     color:var(--ink-dim); background:var(--bg-panel-2);
   }
   .prog-card svg{width:34px; height:34px; opacity:.55;}
-  .prog-card .txt{font-family:'IBM Plex Mono',monospace; font-size:11px; text-align:center; padding:0 16px; letter-spacing:.02em;}
-  .prog-note{margin-top:22px; color:var(--ink-dim); font-size:13.5px; font-family:'IBM Plex Mono',monospace;}
+  .prog-card .txt{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; text-align:center; padding:0 16px; letter-spacing:.02em;}
+  .prog-note{margin-top:22px; color:var(--ink-dim); font-size:13.5px; font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace;}
   .prog-note code{color:var(--accent-soft);}
 
   /* ── Preventivo ── */
@@ -168,11 +165,11 @@
   .quote-form{max-width:640px;}
   .qf-row{margin-bottom:20px;}
   .qf-two{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  .quote-form label{display:block; font-family:'IBM Plex Mono',monospace; font-size:11px;
+  .quote-form label{display:block; font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px;
     color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; margin-bottom:8px;}
   .quote-form input[type=text],.quote-form input[type=email],.quote-form input[type=tel],.quote-form textarea{
     width:100%; background:var(--bg-panel); border:1px solid var(--line); color:var(--ink);
-    border-radius:var(--radius); padding:11px 13px; font-family:'IBM Plex Sans',sans-serif; font-size:14.5px;
+    border-radius:var(--radius); padding:11px 13px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; font-size:14.5px;
   }
   .quote-form input:focus,.quote-form textarea:focus{outline:none; border-color:var(--accent);}
   .quote-form textarea{resize:vertical; min-height:100px;}
@@ -183,7 +180,7 @@
   .qf-privacy input{margin-top:3px; flex-shrink:0;}
   .qf-privacy span{font-size:13.5px; color:var(--ink-dim); line-height:1.5;}
   .qf-privacy a{color:var(--ink); text-decoration:underline;}
-  .qf-note{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim); margin-top:12px;}
+  .qf-note{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--ink-dim); margin-top:12px;}
 
   /* ── Contatti ── */
   .contatti-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
@@ -191,19 +188,42 @@
     margin-top:48px; border:1px solid var(--line); border-radius:var(--radius);
     overflow:hidden; height:340px; filter:grayscale(1) contrast(1.15) invert(0.92);
   }
+  .map-placeholder{
+    height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:14px; background:var(--bg-panel); color:var(--ink-dim); text-align:center; padding:20px;
+  }
+  .map-placeholder svg{width:34px; height:34px; opacity:.6;}
+  .map-placeholder p{font-size:13px; max-width:280px; line-height:1.5;}
   .map-link{margin-top:10px; text-align:right;}
-  .map-link a{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-dim); text-decoration:none;}
+  .map-link a{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:12px; color:var(--ink-dim); text-decoration:none;}
   .map-link a:hover{color:var(--accent);}
   .info-line{display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);}
   .info-line:last-child{border-bottom:none;}
-  .info-line .k{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; width:110px; flex-shrink:0; padding-top:2px;}
+  .info-line .k{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.06em; width:110px; flex-shrink:0; padding-top:2px;}
   .info-line .v{font-size:15px;}
   .info-line a{text-decoration:none; color:var(--accent-soft);}
   .info-line a:hover{text-decoration:underline;}
 
   footer{border-top:1px solid var(--line); padding:32px 0; }
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
-  footer .f-note{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-dim);}
+  footer .f-note{font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:11px; color:var(--ink-dim);}
+  .footer-right{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
+  .policies-link{display:flex; align-items:center; gap:6px; font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace;
+    font-size:11px; color:var(--ink-dim); text-decoration:none; text-transform:uppercase; letter-spacing:.06em;}
+  .policies-link svg{width:14px; height:14px;}
+  .policies-link:hover{color:var(--accent);}
+
+  .cookie-banner{
+    position:fixed; left:0; right:0; bottom:0; z-index:200;
+    background:var(--bg-panel); border-top:1px solid var(--line); padding:18px;
+    transform:translateY(120%); transition:transform .3s ease;
+  }
+  .cookie-banner.show{transform:translateY(0);}
+  .cookie-banner-inner{max-width:1080px; margin:0 auto; display:flex; align-items:center; gap:24px; flex-wrap:wrap;}
+  .cookie-banner p{flex:1; min-width:240px; font-size:13px; color:var(--ink-dim); margin:0; line-height:1.5;}
+  .cookie-banner a{color:var(--ink); text-decoration:underline;}
+  .cookie-banner-btns{display:flex; gap:10px; flex-shrink:0;}
+  .cookie-banner .btn{margin:0; white-space:nowrap;}
 
   @media (max-width: 860px){
     nav{position:fixed; top:64px; left:0; right:0; background:var(--bg-panel); flex-direction:column; padding:20px 28px; border-bottom:1px solid var(--line); display:none;}
@@ -503,12 +523,12 @@
           <div class="info-line"><div class="k">Email</div><div class="v"><a href="mailto:forcellini@aeffewiring.com">forcellini@aeffewiring.com</a></div></div>
         </div>
       </div>
-      <div class="map-frame">
-        <iframe
-          src="https://maps.google.com/maps?q=Via+XXI+Settembre+78,+47897+Fiorentino,+San+Marino&t=&z=15&ie=UTF8&iwloc=&output=embed"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade" title="Mappa — A Effe di Forcellini Andrea">
-        </iframe>
+      <div class="map-frame" id="map-frame">
+        <div class="map-placeholder" id="map-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 20l-6-3V4l6 3 6-3 6 3v13l-6-3-6 3z"/><path d="M9 7v13M15 4v13"/></svg>
+          <p>Per rispetto della tua privacy, la mappa di Google non si carica automaticamente.</p>
+          <button type="button" class="btn btn-outline" id="map-load-btn">Carica la mappa</button>
+        </div>
       </div>
       <div class="map-link">
         <a href="https://www.google.com/maps/search/?api=1&query=Via+XXI+Settembre+78+Fiorentino+San+Marino" target="_blank" rel="noopener">Apri in Google Maps →</a>
@@ -522,9 +542,27 @@
 <footer>
   <div class="wrap">
     <div class="logo"><img src="logo.jpg" alt="A Effe di Forcellini Andrea" class="logo-img logo-img-sm"></div>
-    <div class="f-note">© <span id="y"></span> A Effe di Forcellini Andrea — San Marino</div>
+    <div class="footer-right">
+      <a href="policies.html" class="policies-link" title="Privacy e Cookie">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/></svg>
+        Policies
+      </a>
+      <div class="f-note">© <span id="y"></span> A Effe di Forcellini Andrea — San Marino</div>
+    </div>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Consenso cookie">
+  <div class="cookie-banner-inner">
+    <p>Usiamo solo i cookie strettamente necessari al funzionamento del sito. Se scegli
+      "Accetta tutti", carichiamo anche la mappa di Google Maps nella pagina Contatti, che
+      può impostare i propri cookie. <a href="cookie.html">Maggiori informazioni</a></p>
+    <div class="cookie-banner-btns">
+      <button type="button" class="btn btn-outline" id="cookie-reject">Solo necessari</button>
+      <button type="button" class="btn btn-solid" id="cookie-accept">Accetta tutti</button>
+    </div>
+  </div>
+</div>
 
 <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 <script>
@@ -567,6 +605,48 @@
       + '&body=' + encodeURIComponent(corpo);
 
     window.location.href = link;
+  });
+})();
+</script>
+<script>
+(function(){
+  var KEY = 'aeffe_cookie_consent';
+  var banner = document.getElementById('cookie-banner');
+  var mapFrame = document.getElementById('map-frame');
+  var loadBtn = document.getElementById('map-load-btn');
+
+  function caricaMappa(){
+    if (!mapFrame || mapFrame.querySelector('iframe')) return;
+    var iframe = document.createElement('iframe');
+    iframe.src = "https://maps.google.com/maps?q=Via+XXI+Settembre+78,+47897+Fiorentino,+San+Marino&t=&z=15&ie=UTF8&iwloc=&output=embed";
+    iframe.width = "100%"; iframe.height = "100%"; iframe.style.border = "0";
+    iframe.loading = "lazy"; iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.title = "Mappa — A Effe di Forcellini Andrea";
+    mapFrame.innerHTML = '';
+    mapFrame.appendChild(iframe);
+  }
+
+  var scelta = null;
+  try { scelta = localStorage.getItem(KEY); } catch(e){}
+
+  if (scelta === 'all') caricaMappa();
+  if (!scelta && banner) banner.classList.add('show');
+
+  if (loadBtn) loadBtn.addEventListener('click', function(){
+    caricaMappa();
+    try { localStorage.setItem(KEY, 'all'); } catch(e){}
+  });
+
+  var acceptBtn = document.getElementById('cookie-accept');
+  var rejectBtn = document.getElementById('cookie-reject');
+  if (acceptBtn) acceptBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'all'); } catch(e){}
+    caricaMappa();
+    banner.classList.remove('show');
+  });
+  if (rejectBtn) rejectBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'necessary'); } catch(e){}
+    banner.classList.remove('show');
   });
 })();
 </script>

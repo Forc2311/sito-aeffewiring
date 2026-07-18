@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy & Cookie — A Effe Wiring and Service</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#0a0a0a; --bg-panel:#141414; --line:#2b2b2b;
+    --ink:#f5f5f4; --ink-dim:#8c8c88; --accent:#ffffff; --radius:4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    line-height:1.7; padding:0 24px 80px;
+  }
+  h1{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; font-weight:600;}
+  .wrap{max-width:720px; margin:0 auto;}
+  header{padding:32px 0 24px; display:flex; align-items:center; gap:16px;}
+  .logo-img{height:44px; border-radius:3px;}
+  h1{font-size:26px; margin:32px 0 8px;}
+  .intro{color:var(--ink-dim); font-size:15px; max-width:56ch; margin-bottom:36px;}
+  .cards{display:flex; flex-direction:column; gap:14px;}
+  .card{
+    display:flex; align-items:center; gap:16px; background:var(--bg-panel);
+    border:1px solid var(--line); border-radius:var(--radius); padding:20px;
+    text-decoration:none; color:var(--ink); transition:border-color .2s;
+  }
+  .card:hover{border-color:var(--accent);}
+  .card svg{width:26px; height:26px; flex-shrink:0; opacity:.8;}
+  .card .t{font-weight:600; font-size:15.5px; margin-bottom:3px;}
+  .card .d{font-size:13px; color:var(--ink-dim);}
+  .card .arrow{margin-left:auto; opacity:.5; flex-shrink:0;}
+  .back{display:inline-block; margin-top:40px; font-family:ui-monospace,'SF Mono','Cascadia Code','Roboto Mono',Consolas,monospace; font-size:13px; color:var(--ink-dim); text-decoration:none;}
+  .back:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html"><img src="logo.jpg" alt="A Effe Wiring and Service" class="logo-img"></a>
+  </header>
+
+  <h1>Privacy &amp; Cookie</h1>
+  <p class="intro">Come trattiamo i tuoi dati personali e quali cookie usiamo su questo sito, in conformità al Regolamento Generale sulla Protezione dei Dati (UE) 2016/679.</p>
+
+  <div class="cards">
+    <a class="card" href="privacy.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/></svg>
+      <div>
+        <div class="t">Informativa sulla Privacy</div>
+        <div class="d">Quali dati raccogliamo, perché, e come esercitare i tuoi diritti</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+    <a class="card" href="cookie.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1"/><circle cx="14" cy="9" r="1"/><circle cx="15" cy="14" r="1"/><circle cx="10" cy="15" r="1"/></svg>
+      <div>
+        <div class="t">Cookie Policy</div>
+        <div class="d">Quali cookie usiamo (pochissimi) e come gestirli</div>
+      </div>
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <a class="back" href="index.html">← Torna al sito</a>
+</div>
+</body>
+</html>
